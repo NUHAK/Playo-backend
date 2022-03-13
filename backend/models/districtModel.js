@@ -7,7 +7,7 @@ const districtSchema =mongoose.Schema({
     },
     shortform:{
         type:String,
-        required: [true,'Please add a district']
+        required: [true,'Please add a district shortform']
     },  
 }
           
