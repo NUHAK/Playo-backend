@@ -25,6 +25,7 @@ const setpersonalDetails = asyncHandler(async (req, res) => {
     const personalDetails = new PersonalDetail ({
 
         profileimage:req.body.profileimage,
+        userid:req.body.userid,
         name: req.body.name,
         phonenmbr: req.body.phonenmbr,
         email: req.body.email,
