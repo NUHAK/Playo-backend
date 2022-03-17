@@ -19,11 +19,7 @@ const personalDetailsSchema =mongoose.Schema({
      address:{
          type:String,
          required:true,
-     },
-     userType:{
-         type:String,
-         required:true,
-
      }
+     
     })
 module.exports=mongoose.model('PersonalDetails',personalDetailsSchema)

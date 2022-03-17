@@ -6,7 +6,7 @@ const PersonalDetail = require('../models/personalDetailModel')
 
 
 //@desc  Get personalDetails
-//@route Get /api/personalDetails
+//@route Get /api/personalDetails/id
 //@access Private
 const getpersonalDetails = asyncHandler(async (req, res) => {
     try {
@@ -18,7 +18,7 @@ const getpersonalDetails = asyncHandler(async (req, res) => {
 })
 
 //@desc  Set personalDetails
-//@route Post /api/personalDetails/:id
+//@route Post /api/personalDetails/
 //@access Private 
 
 const setpersonalDetails = asyncHandler(async (req, res) => {
@@ -29,8 +29,6 @@ const setpersonalDetails = asyncHandler(async (req, res) => {
         phonenmbr: req.body.phonenmbr,
         email: req.body.email,
         address: req.body.address,
-
-
     })
     try {
         const a1 = await personalDetails.save()
