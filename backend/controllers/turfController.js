@@ -16,7 +16,20 @@ const getAllTurfs = asyncHandler(async (req, res) => {
     }
 })
 
-//@desc  Get turf
+//@desc  Get turf by district
+//@route Get /api/turfs
+//@access Public 
+
+const getTurfByDistrict = asyncHandler(async (req, res) => {
+   
+    try {
+        const turf = await Turf.find({'district':(req.params.id)})
+        res.json(turf)
+    } catch (err) {
+        res.send('Error' + err)
+    }
+})
+//@desc  Get turflled
 //@route Get /api/turfs/:id
 //@access Public 
 
@@ -105,6 +118,7 @@ const deleteTurf = asyncHandler(async (req, res) => {
 module.exports = {
     getAllTurfs,
     getTurf,
+    getTurfByDistrict,
     setTurf,
     updateturf,
     deleteTurf, 
