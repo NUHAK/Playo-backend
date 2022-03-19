@@ -22,21 +22,23 @@ const getpersonalDetails = asyncHandler(async (req, res) => {
 //@access Private 
 
 const setpersonalDetails = asyncHandler(async (req, res) => {
-    const personalDetails = new PersonalDetail ({
+    // const personalDetails = new PersonalDetail ({
 
-        profileimage:req.body.profileimage,
-        userid:req.body.userid,
-        name: req.body.name,
-        phonenmbr: req.body.phonenmbr,
-        email: req.body.email,
-        address: req.body.address,
-    })
+    //     profileimage:req.body.profileimage,
+    //     userid:req.body.userid,
+    //     name: req.body.name,
+    //     phonenmbr: req.body.phonenmbr,
+    //     email: req.body.email,
+    //     address: req.body.address,
+    // })
+    const personalDetails = new PersonalDetail (req.body);
+
     try {
         const a1 = await personalDetails.save()
         res.json(a1)
 
     } catch (err) {
-        res.send('Error')
+        res.send(err)
     }
 
 
