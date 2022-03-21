@@ -32,7 +32,6 @@ const setpersonalDetails = asyncHandler(async (req, res) => {
     //     address: req.body.address,
     // })
     const personalDetails = new PersonalDetail (req.body);
-
     try {
         const a1 = await personalDetails.save()
         res.json(a1)
@@ -40,10 +39,7 @@ const setpersonalDetails = asyncHandler(async (req, res) => {
     } catch (err) {
         res.send(err)
     }
-
-
 })
-
 //@desc  Update personalDetails
 //@route Patch /api/personalDetails/:id
 //@access Private 

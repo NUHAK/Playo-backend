@@ -6,4 +6,4 @@ router.route('/').get(getAllTurfs).post(setTurf)
 router.route('/:id').delete(deleteTurf).patch(updateturf).get(getTurf)
 router.route('/bydistrict/:id').get(getTurfByDistrict)
 
-module.exports=router
+module.exports=router;

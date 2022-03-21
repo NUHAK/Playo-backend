@@ -51,12 +51,11 @@ const setTurf = asyncHandler(async (req, res) => {
 
     const turf = new Turf({
         img1:req.body.img1,
-        img2:req.body.img2,
         turfname:req.body.turfname,
+        ownerId:req.body.ownerId,
         ownername:req.body.ownername,
         ownernmbr:req.body.ownernmbr,
         district:req.body.district,
-        address:req.body.address,
         post:req.body.post,
         pinnumber:req.body.pinnumber,
         type:req.body.type,

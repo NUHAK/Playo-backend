@@ -9,9 +9,9 @@ const User = require('../models/userModel')
 //@route POST /api/users
 //@access Public 
 const registerUser =asyncHandler(async(req, res) =>{
-    const { name,email,password,userType} = req.body
+    const { name,email,password,userType,status} = req.body
 
-    if(!name || !email || !password ||!userType){
+    if(!name || !email || !password ||!userType || !status){
         res.status(400)
         throw new Error('Please add all fields')
     }
@@ -34,7 +34,8 @@ const registerUser =asyncHandler(async(req, res) =>{
     name,
     email,
     password: hashedPassword,
-    userType
+    userType,
+    status
     })
 
     if(user){
@@ -69,6 +70,7 @@ const loginUser =asyncHandler(async(req, res) =>{
             name:user.name,
             email:user.email,
             userType:user.userType,
+            status:user.status,
             token:generateToken(user._id)
 
         })
@@ -96,7 +98,7 @@ const getMe =asyncHandler(async(req, res) =>{
 
 //Generate JWT
 const generateToken =(id) =>{
-    return jwt.sign({id},process.env.JWT_SECRET,{
+    return jwt.sign({id},"786",{
         expiresIn: '30d',
     })
 }
