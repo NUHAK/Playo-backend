@@ -17,7 +17,7 @@ const getAllTurfs = asyncHandler(async (req, res) => {
 })
 
 //@desc  Get turf by district
-//@route Get /api/turfs
+//@route Get /api/turfs/id
 //@access Public 
 
 const getTurfByDistrict = asyncHandler(async (req, res) => {
@@ -29,7 +29,22 @@ const getTurfByDistrict = asyncHandler(async (req, res) => {
         res.send('Error' + err)
     }
 })
-//@desc  Get turflled
+//@desc  Get turf by ownerid
+//@route Get /api/turfs/byuser/id
+//@access Public 
+//Error...................Error.................error..............Error...............error....................
+const getTurfByUser = asyncHandler(async (req, res) => {
+   
+    try {
+        const turf = await Turf.find({ownernmbr:(req.params.id)})
+      res.json(turf)
+    } catch (err) {
+        res.send('Error' + err)
+   }
+})
+//..........................................................................................................
+
+//@desc  Get turf ld
 //@route Get /api/turfs/:id
 //@access Public 
 
@@ -55,6 +70,7 @@ const setTurf = asyncHandler(async (req, res) => {
         turfname:req.body.turfname,
         ownername:req.body.ownername,
         ownernmbr:req.body.ownernmbr,
+        ownerid:req.body.ownerid,
         district:req.body.district,
         address:req.body.address,
         post:req.body.post,
@@ -83,6 +99,7 @@ const updateturf=asyncHandler(async(req,res)=>{
         turf.ownername=req.body.ownername
         turf.ownernmbr=req.body.ownernmbr
         turf.district=req.body.district
+        turf.ownerid=req.body.ownerid
         turf.address=req.body.address
         turf.post=req.body.post
         turf.pinnumber=req.body.pinnumber
@@ -122,6 +139,7 @@ module.exports = {
     setTurf,
     updateturf,
     deleteTurf, 
+    getTurfByUser,
 }
 
 

@@ -8,6 +8,11 @@ const turfSchema = mongoose.Schema({
         required: true,
         ref: 'District',
     },
+    ownerid:{
+        type:mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User',
+    },
     img1: {
         type: String,
         required: true,
