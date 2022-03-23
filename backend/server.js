@@ -4,7 +4,7 @@ const dotenv=require('dotenv').config()
 const {errorHandler}=require('./middleware/errorMiddleware')
 const connectDB=require('./config/db')
 const mongoose = require("mongoose");
-const port =process.env.PORT || 5001
+const port =process.env.PORT
 const cors = require("cors");
 
 // connectDB()

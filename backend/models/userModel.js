@@ -17,6 +17,11 @@ const userSchema = mongoose.Schema({
     userType:{
        type:String,
        required:true,
+   },
+   status:{
+        type:String,
+        // required:true,
+        default:"notFilled"
    }
     
 },
