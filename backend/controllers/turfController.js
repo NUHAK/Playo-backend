@@ -97,9 +97,7 @@ const updateturf=asyncHandler(async(req,res)=>{
         turf.img2=req.body.img2
         turf.turfname=req.body.turfname
         turf.ownername=req.body.ownername
-        turf.ownernmbr=req.body.ownernmbr
         turf.district=req.body.district
-        turf.ownerid=req.body.ownerid
         turf.address=req.body.address
         turf.post=req.body.post
         turf.pinnumber=req.body.pinnumber
