@@ -36,7 +36,7 @@ const getTurfByDistrict = asyncHandler(async (req, res) => {
 const getTurfByUser = asyncHandler(async (req, res) => {
    
     try {
-        const turf = await Turf.find({ownernmbr:(req.params.id)})
+        const turf = await Turf.find({ownerid:(req.params.id)})
       res.json(turf)
     } catch (err) {
         res.send('Error' + err)

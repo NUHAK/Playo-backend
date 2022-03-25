@@ -10,12 +10,13 @@ const PersonalDetail = require('../models/personalDetailModel')
 //@access Private
 const getpersonalDetails = asyncHandler(async (req, res) => {
     try {
-        const personalDetails = await PersonalDetail.findById(req.params.id)
+        // const personalDetails = await PersonalDetail.findById(req.params.id)
+        const personalDetails = await PersonalDetail.find({userid:(req.params.id)})
         res.json(personalDetails)
     } catch (err) {
         res.send('Error' + err)
     }
-})
+});
 
 //@desc  Set personalDetails
 //@route Post /api/personalDetails/

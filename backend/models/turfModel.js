@@ -15,11 +15,11 @@ const turfSchema = mongoose.Schema({
     },
     img1: {
         type: String,
-        required: true,
+        // required: true,
     },
     img2: {
         type: String,
-        required: true,
+        // required: true,
     },
     turfname: {
         type: String,
@@ -35,7 +35,7 @@ const turfSchema = mongoose.Schema({
     },
     address: {
         type: String,
-        required: true,
+        // required: true,
     },
     post: {
         type: String,
