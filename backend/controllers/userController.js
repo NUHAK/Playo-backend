@@ -68,6 +68,7 @@ const loginUser =asyncHandler(async(req, res) =>{
             _id:user.id,
             name:user.name,
             email:user.email,
+            status:user.status,
             userType:user.userType,
             token:generateToken(user._id)
 
@@ -102,9 +103,6 @@ const generateToken =(id) =>{
         expiresIn: '30d',
     })
 }
-
-
-
 
 module.exports = {
     registerUser,

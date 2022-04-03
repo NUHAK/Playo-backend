@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const { json } = require('express/lib/response')
 const Turf = require('../models/turfModel')
-
+const User = require('../models/userModel')
 
 //@desc  Get all turf
 //@route Get /api/turfs
@@ -81,8 +81,8 @@ const setTurf = asyncHandler(async (req, res) => {
     })
     try {
         const a1 = await turf.save()
-        res.json(a1)
-
+        await User.findByIdAndUpdate(req.body.ownerid,{status:"filled"});
+        res.json(a1);
     } catch (err) {
         res.send(err)
     }
