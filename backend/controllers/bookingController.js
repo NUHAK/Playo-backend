@@ -15,12 +15,15 @@ const getAllBookings = asyncHandler(async (req, res) => {
 });
 
 const createBooking = asyncHandler(async (req, res) => {
-  const booking = new Bookings({
-    ...req.body,
-  });
+  const personalId = await PersonalDetails.find({ userid: req.body.userId });
+  // console.log(personalId);
+  const { userId, turfId, slotId } = req.body;
+  let bookingData = { userId, turfId, slotId };
+  bookingData.userId = personalId[0]._id;
+  const booking = new Bookings(bookingData);
   try {
-    const res = await booking.save();
-    res.send("Booking success");
+    const data = await booking.save();
+    res.send(data);
   } catch (err) {
     res.send(err);
   }
@@ -31,36 +34,31 @@ const getBookedBy = asyncHandler(async (req, res) => {
   try {
     const turfId = req.params.id;
 
-    const bookings = await Bookings.find({ turfId: turfId });
+    const bookings = await Bookings.find({ turfId: turfId })
+      .populate("userId")
+      .populate("turfId")
+      .populate("slotId");
 
-    const userIds = [];
-    const slotIds = [];
-    const bookingIds =  [];
-    bookings.map(function (booking) {
-      userIds.push(booking.userId);
-      slotIds.push(booking.slotId);
-      bookingIds.push(booking._id);
-    });
-    //get userDetails by userIds
-    const bookedby = await personalDetailModel.find({
-      userid: { $in: userIds },
-    });
-
-    //get slot by slotId
-    const bookedSlot = await slots.find({ _id: { $in: slotIds } });
-
-    //combine arrays
-    const combined = bookedby.map((book,index)=>{
-      return {user:book,bookingId:bookingIds[index],slot:bookedSlot[index]}
-    })
-    res.send(combined);
+    res.send(bookings);
   } catch (error) {
     res.send("error" + error);
   }
 });
 
+//delete booking
+const deleteBooking = asyncHandler (async (req , res)=>{
+  try {
+    const {id} = req.params;
+    const HandleDelte = await Bookings.remove({_id:id});
+    res.send("deleted");
+  } catch (error) {
+    
+  }
+})
+
 module.exports = {
   getAllBookings,
   createBooking,
   getBookedBy,
+  deleteBooking
 };
