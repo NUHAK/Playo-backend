@@ -5,21 +5,26 @@ const Bookings = require("../models/bookingModel");
 const getTimeSlots = asyncHandler(async (req, res) => {
   const turfId = req.params.turfId;
   try {
-    const bookings = await Bookings.find({ turfId: turfId });
+    let bookings = await Bookings.find({ turfId: turfId });
 
-    const turfBookings = bookings.filter((booking) => booking.turfId == turfId);
+    // const bookings = bookings.filter((booking) => booking.turfId == turfId);
 
-    const timeSlots = await TimeSlots.find();
+    let timeSlots = await TimeSlots.find();
+    // console.log(timeSlots && timeSlots._id);
 
-    const emptyTimeSlots = [];
+    const emptyTimeSlots = timeSlots.filter((timeSlot) => {
+      return !bookings.some((booking) => {
+        return timeSlot._id === booking.slotId;
+      });
+    });
+    // console.log(emptyTimeSlots);
 
-    for (let j = 0; j < timeSlots.length; j++) {
-      for (let i = 0; i < turfBookings.length; i++) {
-        if (timeSlots[j]._id !== turfBookings[i].slotId) {
-          emptyTimeSlots.push(timeSlots[i]);
-        }
-      }
-    }
+    // const emptyTimeSlots = bookings.filter((booking) => {
+    //   return !timeSlots.some((timeSlot) => {
+    //     return booking.slotId === timeSlot._id;
+    //   });
+    // });
+
     res.send(emptyTimeSlots);
   } catch (err) {
     res.send("Error" + err);
