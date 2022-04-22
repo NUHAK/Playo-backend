@@ -1,7 +1,9 @@
 const { json } = require('express/lib/response')
 
 const asyncHandler = require('express-async-handler')
+
 const PersonalDetail = require('../models/personalDetailModel')
+const User = require('../models/userModel')
 
 
 
@@ -34,6 +36,7 @@ const setpersonalDetails = asyncHandler(async (req, res) => {
     })
     try {
         const a1 = await personalDetails.save()
+        await User.findByIdAndUpdate(req.body.userid,{status:"filled"})
         res.json(a1)
 
     } catch (err) {
