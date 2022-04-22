@@ -32,7 +32,6 @@ const getTurfByDistrict = asyncHandler(async (req, res) => {
 //@desc  Get turf by ownerid
 //@route Get /api/turfs/byuser/id
 //@access Public 
-//Error...................Error.................error..............Error...............error....................
 const getTurfByUser = asyncHandler(async (req, res) => {
    
     try {
@@ -42,8 +41,7 @@ const getTurfByUser = asyncHandler(async (req, res) => {
         res.send('Error' + err)
    }
 })
-//..........................................................................................................
-
+ 
 //@desc  Get turf ld
 //@route Get /api/turfs/:id
 //@access Public 
@@ -97,9 +95,7 @@ const updateturf=asyncHandler(async(req,res)=>{
         turf.img2=req.body.img2
         turf.turfname=req.body.turfname
         turf.ownername=req.body.ownername
-        turf.ownernmbr=req.body.ownernmbr
         turf.district=req.body.district
-        turf.ownerid=req.body.ownerid
         turf.address=req.body.address
         turf.post=req.body.post
         turf.pinnumber=req.body.pinnumber
